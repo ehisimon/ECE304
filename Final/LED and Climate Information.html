@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!-- saved from url=(0233)https://alt-5a3199fc4282a.blackboard.com/bbcswebdav/pid-12912533-dt-content-rid-286418517_1/courses/33746.202235/Climate_Information_Plotting_Exp1.html?one_hash=F05CD36BF8E826D47336B00F47593E75&f_hash=48E044B3295F63BDF55230D751B8B2D1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>LED and Climate Information</title>
+    <script src="./LED and Climate Information_files/Chart.min.js">
+    </script>
+<style type="text/css">/* Chart.js */
+@keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style><style>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */</style></head>
+<body>
+    <canvas id="scatter-canvas" width="1600" height="800" style="display: block; height: 400px; width: 800px;"></canvas>
+
+    <script>
+        const canvas = document.getElementById('scatter-canvas').getContext('2d');
+        const dataPoints = [];
+        const scatterChart = new Chart(canvas, {
+            type:'scatter',
+            data: {
+                datasets: [{
+                    label: 'Temperature',
+                    data: dataPoints,
+                    pointRadius: 5,
+                    pointBackgroundColor: 'blue',
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: false,
+                legend: {
+                    labels: {
+                        fontColor: "blue",
+                        fontSize: 18,
+                    },
+                },
+                scales: {
+                    yAxes: [{ 
+                        scaleLabel: {
+                            labelString: "Temperature (ºC)", 
+                            display: true,
+                            },
+                        ticks:{
+                            suggestedMin: 0,
+                            suggestedMax: 40
+                        },
+                        },
+                    ],
+                    xAxes: [{
+                        scaleLabel: {
+                            labelString: "Time (s)", 
+                            display: true
+                        } 
+                    }],
+                }
+            },
+        });
+
+        let startDate = null;
+        function addDataPoint(value){
+            const now = new Date();
+            if(startDate === null) startDate = now;
+
+            const secondsElapsed = (now - startDate) / 1000;
+
+            console.log("Time:", secondsElapsed, "Temp:", value);
+            dataPoints.push({ x: secondsElapsed, y: value });
+            scatterChart.update();
+        }
+
+        function initWebsocket() {
+            const ws = new WebSocket("ws://ENTER ESP32 ADDRESS:80");
+            ws.onmessage = (evt) => {
+                const data = JSON.parse(evt.data)
+                const temp = data['Temperature'];
+
+                addDataPoint(temp)
+            };
+        };
+
+        initWebsocket();
+    </script>
+
+<div id="veed-recorder-root"><template shadowrootmode="open"><section><div><div class="App" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><iframe title="veed-extension-permissions" allow="camera *; microphone *;" src="chrome-extension://mgipbckfkdcalgbcjmkogjijddnkbecc/iframe.html" style="display: none;"></iframe></div></div></section><link rel="stylesheet" href="chrome-extension://mgipbckfkdcalgbcjmkogjijddnkbecc/content-root.css"></template></div><div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div></body></html>

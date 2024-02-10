@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Climate Monitoring</title>
+    <script type="text/javascript"src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+
+  <body>
+    <h1 align=center>Climate Monitoring</h1>
+    <!--Div that will hold the google chart-->
+    <div id="chart_div" align='center'></div>
+
+    <script type="text/javascript">
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages': ['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Restrict the number of points we keep in the chart at any time
+      const maxDatapoints = 20;
+
+
+      // Set chart display options
+      const chartOptions = {
+        title: 'Temperature Profile',
+        width: 800,
+        height: 300,
+        legend: 'none',
+        vAxis: { title: 'Temperature (C)', viewWindowMode: "pretty", minValue: 0, maxValue: 40},
+        hAxis: { title: 'Time' }
+      };
+
+      // Modified websocket code to update Google Chart on each message from ESP
+      // This code will run at the end of the drawChart() callback
+      function initWebsocket(chart, dataTable) {
+        const ws = new WebSocket("ws://192.168.1.94:80");
+
+        ws.onmessage = (evt) => {
+          // Code here runs every time a message is received
+          const msg = JSON.parse(evt.data)
+          const temp = msg['Temperature'];
+
+          const now = new Date();
+          dataTable.addRow([now, temp]);
+
+            // dataTable.fg.length is the number of datapoints in foreground
+          if (dataTable.getNumberOfRows() > maxDatapoints) {
+            dataTable.removeRow(0);
+          }
+          chart.draw(dataTable, chartOptions);
+        };
+
+        // close websocket when leaving the page
+        window.onbeforeunload = () => {
+          ws.close();
+        };
+      };
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+        // Create the data table.
+        const dataTable = new google.visualization.DataTable();
+        dataTable.addColumn('date', 'Time');
+        dataTable.addColumn('number', 'Temperature (C)');
+
+        // Instantiate and draw our chart, passing in some options.
+        const chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+        chart.draw(dataTable, chartOptions);
+
+        // Set up connection with ESP and tell Javascript what to do with new messages
+        initWebsocket(chart, dataTable);
+      }
+    </script>
+  </body>
+</html>

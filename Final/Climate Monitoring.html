@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>LED and Climate Information</title>
+  <script
+    src=
+    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js">
+  </script>
+</head>
+<body>
+  <canvas id="scatter-canvas" width=800 height=400></canvas>
+
+  <script>
+    const canvas = document.getElementById('scatter-canvas').getContext('2d');
+    const dataPoints = [];
+    const scatterChart = new Chart(canvas, {
+      type:'scatter',
+      data: {
+        datasets: [{
+          label: 'Temperature',
+          data: dataPoints,
+          pointRadius: 5,
+          pointBackgroundColor: 'blue',
+        }],
+      },  
+      options: {
+        maintainAspectRatio: false,
+        responsive: false,
+        legend: {
+          labels: {
+            fontColor: "blue",
+            fontSize: 18,
+          },
+        },
+        scales: {
+          yAxes: [{
+            scaleLabel: {
+              labelString: "Temperature (ºC)",
+              display: true,
+            },
+            ticks:{
+              suggestedMin: 0,
+              suggestedMax: 40
+            },
+            },
+          ],
+          xAxes: [{
+            scaleLabel: {
+              labelString: "Time (s)",
+              display: true
+            }
+          }],
+        }
+      },
+    });
+
+    let startDate = null;
+    function addDataPoint(value){
+      const now = new Date();
+      if(startDate === null) startDate = now;
+
+      const secondsElapsed = (now - startDate) / 1000;
+
+      console.log("Time:", secondsElapsed, "Temp:", value);
+      dataPoints.push({ x: secondsElapsed, y: value });
+      scatterChart.update();
+    }
+
+    function initWebsocket() {
+      const ws = new WebSocket("ws://192.168.1.94:80");
+      ws.onmessage = (evt) => {
+        const data = JSON.parse(evt.data)
+        const temp = data['Temperature'];
+
+        addDataPoint(temp)
+      };
+    };
+
+    initWebsocket();
+  </script>
+</body>
+</html>
