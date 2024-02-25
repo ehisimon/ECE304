@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)https://flows.nodered.org/node/node-red-dashboard -->
+<html lang="en" class="show--consent"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@nodered">
+	<meta name="twitter:title" content="node-red-dashboard">
+	<meta name="twitter:description" content="A set of dashboard nodes for Node-RED">
+	<meta name="twitter:label1" value="Latest version">
+	<meta name="twitter:data1" value="3.5.0">
+	<meta name="twitter:image" content="http://nodered.org/node-red-icon.png">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://flows.nodered.org/node/node-red-dashboard">
+	<meta property="og:title" content="node-red-dashboard">
+	<meta property="og:description" content="A set of dashboard nodes for Node-RED">
+	<meta property="og:image" content="http://nodered.org/node-red-icon.png">
+	<link rel="icon" type="image/x-icon" href="https://flows.nodered.org/favicon.ico">
+	<title>node-red-dashboard (node) - Node-RED</title>
+
+	<link href="./node-red-dashboard (node) - Node-RED_files/css" rel="stylesheet" type="text/css">
+	<link href="./node-red-dashboard (node) - Node-RED_files/css(1)" rel="stylesheet" type="text/css">
+	<link href="./node-red-dashboard (node) - Node-RED_files/style.min.css" rel="stylesheet" media="screen">
+	<link href="./node-red-dashboard (node) - Node-RED_files/library.css" rel="stylesheet" media="screen">
+	<link href="./node-red-dashboard (node) - Node-RED_files/font-awesome.min.css" rel="stylesheet" media="screen">
+	<link href="./node-red-dashboard (node) - Node-RED_files/cc.css" rel="stylesheet" media="screen">
+	<script src="./node-red-dashboard (node) - Node-RED_files/jquery-1.9.1.js"></script>
+	<script src="./node-red-dashboard (node) - Node-RED_files/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="./node-red-dashboard (node) - Node-RED_files/utils.js"></script>
+	<script src="./node-red-dashboard (node) - Node-RED_files/cc.min.js"></script>
+<style id="cc--style" type="text/css">/** Light color-scheme **/
+:root{
+    --cc-bg: #fff;
+    --cc-text: #2d4156;
+    --cc-btn-primary-bg: #2d4156;
+    --cc-btn-primary-text: var(--cc-bg);
+    --cc-btn-primary-hover-bg: #1d2e38;
+    --cc-btn-secondary-bg: #eaeff2;
+    --cc-btn-secondary-text: var(--cc-text);
+    --cc-btn-secondary-hover-bg: #d8e0e6;
+    --cc-toggle-bg-off: #919ea6;
+    --cc-toggle-bg-on: var(--cc-btn-primary-bg);
+    --cc-toggle-bg-readonly: #d5dee2;
+    --cc-toggle-knob-bg: #fff;
+    --cc-toggle-knob-icon-color: #ecf2fa;
+    --cc-block-text: var(--cc-text);
+    --cc-cookie-category-block-bg: #f0f4f7;
+    --cc-cookie-category-block-bg-hover: #e9eff4;
+    --cc-section-border: #f1f3f5;
+    --cc-cookie-table-border: #e9edf2;
+    --cc-overlay-bg: rgba(4, 6, 8, .85);
+    --cc-webkit-scrollbar-bg: #cfd5db;
+    --cc-webkit-scrollbar-bg-hover: #9199a0;
+}
+
+/** Dark color-scheme **/
+.c_darkmode{
+    --cc-bg: #181b1d;
+    --cc-text: #d8e5ea;
+    --cc-btn-primary-bg: #a6c4dd;
+    --cc-btn-primary-text: #000;
+    --cc-btn-primary-hover-bg: #c2dff7;
+    --cc-btn-secondary-bg: #33383c;
+    --cc-btn-secondary-text: var(--cc-text);
+    --cc-btn-secondary-hover-bg: #3e454a;
+    --cc-toggle-bg-off: #667481;
+    --cc-toggle-bg-on: var(--cc-btn-primary-bg);
+    --cc-toggle-bg-readonly: #454c54;
+    --cc-toggle-knob-bg: var(--cc-cookie-category-block-bg);
+    --cc-toggle-knob-icon-color: var(--cc-bg);
+    --cc-block-text: #b3bfc5;
+    --cc-cookie-category-block-bg: #23272a;
+    --cc-cookie-category-block-bg-hover: #2b3035;
+    --cc-section-border: #292d31;
+    --cc-cookie-table-border: #2b3035;
+    --cc-webkit-scrollbar-bg: #667481;
+    --cc-webkit-scrollbar-bg-hover: #9199a0;
+}
+
+.cc_div *,
+.cc_div :before,
+.cc_div :after{
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: none;
+    font-style: inherit;
+    font-variant: normal;
+    font-weight: inherit;
+    font-family: inherit;
+	line-height: 1.2;
+    font-size: 1em;
+    transition: none;
+    animation: none;
+    margin: 0;
+    padding: 0;
+    text-transform: none;
+    letter-spacing: unset;
+    color: inherit;
+    background: none;
+    border: none;
+    box-shadow: none;
+    text-decoration: none;
+    text-align: left;
+    visibility: unset;
+}
+
+.cc_div {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    color: #2d4156;
+    color: var(--cc-text);
+}
+
+.cc_div .c-bn,
+.cc_div .b-tl,
+#s-ttl,
+#c-ttl,
+#s-bl td:before{
+    font-weight: 600;
+}
+
+#cm,
+#s-inr,
+.cc_div .c-bl,
+.cc_div .b-tl,
+#s-bl .act .b-acc{
+    border-radius: .35em;
+}
+
+.cc_div input,
+.cc_div button,
+.cc_div a{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.cc_div a{
+    border-bottom: 1px solid;
+}
+
+.cc_div a:hover{
+    text-decoration: none;
+    border-color: transparent;
+}
+
+/* Make elements "animatable" */
+.c--anim #cm,
+.c--anim #s-cnt,
+.c--anim #s-inr,
+#cs-ov,
+#cm-ov{
+    transition: visibility .25s linear, opacity .25s ease, transform .25s ease!important;
+}
+
+.c--anim .c-bn{
+    transition: background-color .25s ease!important;
+}
+
+/* start transitions */
+.c--anim #cm.bar.slide,
+.c--anim .bar.slide #s-inr{
+    transition: visibility .4s ease, opacity .4s ease, transform .4s ease!important;
+}
+
+.c--anim #cm.bar.slide + #cm-ov,
+.c--anim .bar.slide + #cs-ov{
+    transition: visibility .4s ease, opacity .4s ease, transform .4s ease!important;
+}
+
+#cm.bar.slide,
+.cc_div .bar.slide #s-inr{
+    transform: translateX(100%);
+    opacity: 1;
+}
+
+#cm.bar.top.slide,
+.cc_div .bar.left.slide #s-inr{
+    transform: translateX(-100%);
+    opacity: 1;
+}
+
+#cm.slide,
+.cc_div .slide #s-inr{
+    transform: translateY(1.6em);
+}
+
+#cm.top.slide{
+    transform: translateY(-1.6em);
+}
+
+#cm.bar.slide{
+    transform: translateY(100%);
+}
+
+#cm.bar.top.slide{
+    transform: translateY(-100%);
+}
+/* end transitions */
+
+/* Show modals */
+
+.show--consent .c--anim #cm,
+.show--consent .c--anim #cm.bar,
+.show--settings .c--anim #s-inr,
+.show--settings .c--anim .bar.slide #s-inr{
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible!important;
+}
+
+.force--consent.show--consent .c--anim #cm.box.middle,
+.force--consent.show--consent .c--anim #cm.cloud.middle{
+    transform: scale(1) translateY(-50%);
+}
+
+.show--settings .c--anim #s-cnt{
+    visibility: visible!important;
+}
+
+/* Show overlays */
+.force--consent.show--consent .c--anim #cm-ov,
+.show--settings .c--anim #cs-ov{
+    visibility: visible!important;
+    opacity: 1!important;
+}
+
+#cm{
+    font-family: inherit;
+    padding: 1.1em 1.8em 1.4em 1.8em;
+    position: fixed;
+    z-index: 1;
+    background: #fff;
+    background: var(--cc-bg);
+    max-width: 24.2em;
+    width: 100%;
+    bottom: 1.250em;
+    right: 1.250em;
+    box-shadow: 0 0.625em 1.875em #000000;
+    box-shadow: 0 0.625em 1.875em rgba(2, 2, 3, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(.95);
+    line-height: initial;
+}
+
+#c-ttl{
+    margin-bottom: .7em;
+    font-size: 1.05em;
+}
+
+.cloud #c-ttl{
+    margin-top: -.15em;
+}
+
+#c-txt{
+    margin-bottom: 1.4em;
+    font-size: 0.9em;
+    line-height: 1.5em;
+}
+
+.cc_div .c-bn{
+    color: #40505a;
+    color: var(--cc-btn-secondary-text);
+    background: #e5ebef;
+    background: var(--cc-btn-secondary-bg);
+    padding: 1em 1.7em;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 0.82em;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#cm .c-bn{
+    width: 48.5%;
+}
+
+#c-bns button + button,
+#s-cnt button + button,
+#s-c-bn{
+    float: right;
+}
+
+#s-cnt #s-rall-bn{
+    float: none;
+    margin-left: 1em;
+}
+
+#cm .c_link:hover,
+#cm .c_link:active,
+#s-cnt button + button:hover,
+#s-cnt button + button:active,
+#s-c-bn:active,
+#s-c-bn:hover{
+    background: #d8e0e6;
+    background: var(--cc-btn-secondary-hover-bg);
+}
+
+/**
+CookieConsent settings modal
+**/
+#s-cnt{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 101;
+    display: table;
+    height: 100%;
+    visibility: hidden;
+}
+
+#s-bl{
+    outline: none;
+}
+
+#s-bl .title{
+    margin-top: 1.4em;
+}
+
+#s-bl .title:first-child{
+    margin-top: 0;
+}
+
+#s-bl .b-bn{
+    margin-top: 0;
+}
+
+#s-bl .b-acc .p{
+    margin-top: 0;
+    padding: 1em;
+}
+
+#s-cnt .b-bn .b-tl{
+    display: block;
+    font-family: inherit;
+    font-size: .95em;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+    padding: 1.3em 6.4em 1.3em 2.7em;
+    background: none;
+    transition: background-color .25s ease;
+}
+
+#s-cnt .act .b-bn .b-tl{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#s-cnt .b-bn .b-tl:active,
+#s-cnt .b-bn .b-tl:hover{
+    background: #e9eff4;
+    background: var(--cc-cookie-category-block-bg-hover);
+}
+
+#s-bl .b-bn{
+    position: relative;
+}
+
+#s-bl .c-bl{
+    padding: 1em;
+    margin-bottom: .5em;
+    border: 1px solid #f1f3f5;
+    border-color: var(--cc-section-border);
+    transition: background-color .25s ease;
+}
+
+#s-bl .c-bl:hover{
+    background: #f0f4f7;
+    background: var(--cc-cookie-category-block-bg);
+}
+
+#s-bl .c-bl:last-child{
+    margin-bottom: .5em;
+}
+
+#s-bl .c-bl:first-child{
+    transition: none;
+    padding: 0;
+    margin-top: 0;
+    border:none;
+    margin-bottom: 2em;
+}
+
+#s-bl .c-bl:not(.b-ex):first-child:hover{
+    background: transparent;
+    background: unset;
+}
+
+#s-bl .c-bl.b-ex{
+    padding: 0;
+    border: none;
+    background: #f0f4f7;
+    background: var(--cc-cookie-category-block-bg);
+    transition: none;
+}
+
+#s-bl .c-bl.b-ex + .c-bl{
+    margin-top: 2em;
+}
+
+#s-bl .c-bl.b-ex + .c-bl.b-ex{
+    margin-top: 0;
+}
+
+#s-bl .c-bl.b-ex:first-child{
+    margin-bottom: 1em;
+}
+
+#s-bl .c-bl.b-ex:first-child{
+    margin-bottom: .5em;
+}
+
+#s-bl .b-acc{
+    max-height: 0;
+    overflow: hidden;
+    padding-top: 0;
+    margin-bottom: 0;
+    display: none;
+}
+
+#s-bl .act .b-acc{
+    max-height: 100%;
+    display: block;
+    overflow: hidden;
+}
+
+#s-cnt .p{
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin-top: .85em;
+    color: #2d4156;
+    color: var(--cc-block-text);
+}
+
+.cc_div .b-tg .c-tgl:disabled{
+    cursor: not-allowed;
+}
+
+#c-vln{
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+
+#cs{
+    padding: 0 1.7em;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+#s-inr{
+    height: 100%;
+    position: relative;
+    max-width: 45em;
+    margin: 0 auto;
+    transform: scale(.96);
+    opacity: 0;
+    padding-top: 4.75em;
+    padding-bottom: 4.75em;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    visibility: hidden;
+    box-shadow: rgba(3, 6, 9, .26) 0px 13px 27px -5px;
+}
+
+#s-inr,
+#s-hdr,
+#s-bns{
+    background: #fff;
+    background: var(--cc-bg);
+}
+
+#s-bl{
+	overflow-y: auto;
+    overflow-y: overlay;
+    overflow-x: hidden;
+    height: 100%;
+    padding: 1.3em 2.1em;
+    display: block;
+    width: 100%;
+}
+
+#s-bns{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1em 2.1em;
+    border-top: 1px solid #f1f3f5;
+    border-color: var(--cc-section-border);
+    height: 4.75em;
+}
+
+.cc_div .cc-link{
+    color: #253b48;
+    color: var(--cc-btn-primary-bg);
+    border-bottom: 1px solid #253b48;
+    border-color: var(--cc-btn-primary-bg);
+    display: inline;
+    padding-bottom: 0;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cc_div .cc-link:hover,
+.cc_div .cc-link:active{
+    border-color: transparent;
+}
+
+#c-bns button:first-child,
+#s-bns button:first-child{
+    color: #fff;
+    color: var(--cc-btn-primary-text);
+    background: #253b48;
+    background: var(--cc-btn-primary-bg);
+}
+
+.cc_div .b-tg .c-tgl:checked ~ .c-tg{
+    background: #253b48;
+    background: var(--cc-toggle-bg-on);
+}
+
+#c-bns button:first-child:active,
+#c-bns button:first-child:hover,
+#s-bns button:first-child:active,
+#s-bns button:first-child:hover{
+    background: #1d2e38;
+    background: var(--cc-btn-primary-hover-bg);
+}
+
+#s-hdr{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: table;
+    padding: 0 2.1em;
+    height: 4.75em;
+    vertical-align: middle;
+    z-index: 2;
+    border-bottom: 1px solid #f1f3f5;
+    border-color: var(--cc-section-border);
+}
+
+#s-ttl{
+	display: table-cell;
+    vertical-align: middle;
+    font-size: 1em;
+}
+
+#s-c-bn{
+    padding: 0;
+    width: 1.7em;
+    height: 1.7em;
+    font-size: 1.45em;
+    margin: 0;
+    font-weight: initial;
+    position: relative;
+}
+
+#s-c-bnc{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cc_div span.t-lb {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#c_policy__text{
+    height: 31.250em;
+    overflow-y: auto;
+    margin-top: 1.250em;
+}
+
+#c-s-in{
+    position: relative;
+    transform: translateY(-50%);
+    top: 50%;
+    height: 100%;
+    height: calc(100% - 2.5em);
+    max-height: 37.5em;
+}
+
+@media screen and (min-width: 688px) {
+    /** works only on webkit-based browsers **/
+    #s-bl::-webkit-scrollbar{
+        width: .9em;
+        height: 100%;
+        background: transparent;
+        border-radius: 0 0.250em 0.250em 0;
+    }
+    
+    #s-bl::-webkit-scrollbar-thumb{
+        border: 0.25em solid var(--cc-bg);
+        background: #cfd5db;
+        background: var(--cc-webkit-scrollbar-bg);
+        border-radius: 100em;
+    }
+
+    #s-bl::-webkit-scrollbar-thumb:hover{
+        background: #9199a0;
+        background: var(--cc-webkit-scrollbar-bg-hover);
+    }
+
+    #s-bl::-webkit-scrollbar-button {
+        width: 10px;
+        height: 5px;
+    }
+}
+
+/** custom checkbox **/
+/* The container */
+.cc_div .b-tg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: inline-block;
+    margin: auto;
+    right: 1.2em;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+    vertical-align: middle;
+}
+
+/* Hide the browser's default checkbox */
+.cc_div .b-tg .c-tgl {
+    position: absolute;
+    cursor: pointer;
+    display: block;
+    top: 0;
+    left: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* Create a custom checkbox */
+.cc_div .b-tg .c-tg {
+    position: absolute;
+    background: #919ea6;
+    background: var(--cc-toggle-bg-off);
+    transition: background-color .25s ease, box-shadow .25s ease;
+    pointer-events: none;
+}
+
+.cc_div span.t-lb,
+.cc_div .b-tg,
+.cc_div .b-tg .c-tg,
+.cc_div .b-tg .c-tgl{
+    width: 3.4em;
+    height: 1.5em;
+    border-radius: 4em;
+}
+
+.cc_div .b-tg .c-tg.c-ro{
+    cursor: not-allowed;
+}
+
+.cc_div .b-tg .c-tgl ~ .c-tg.c-ro{
+    background: #d5dee2;
+    background: var(--cc-toggle-bg-readonly);
+}
+
+.cc_div .b-tg .c-tgl ~ .c-tg.c-ro:after{
+    box-shadow: none;
+}
+
+/* Style the checkmark/indicator */
+.cc_div .b-tg .c-tg:after {
+    content: "";
+    position: relative;
+    display: block;
+    left: 0.125em;
+    top: 0.125em;
+    width: 1.25em;
+    height: 1.25em;
+    border: none;
+    box-sizing: content-box;
+    background: #fff;
+    background: var(--cc-toggle-knob-bg);
+    box-shadow: 0 1px 2px rgba(24, 32, 35, .36);
+    transition: transform .25s ease;
+    border-radius: 100%;
+}
+
+/* Show the checkmark when checked */
+.cc_div .b-tg .c-tgl:checked ~ .c-tg:after{
+    transform: translateX(1.9em);
+}
+
+#s-bl table,
+#s-bl th,
+#s-bl td{
+    border: none;
+}
+
+#s-bl tbody tr{
+    transition: background-color .25s ease;
+}
+
+#s-bl tbody tr:hover{
+    background: #e9eff4;
+    background: var(--cc-cookie-category-block-bg-hover);
+}
+
+#s-bl table { 
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#s-bl td, 
+#s-bl th { 
+    padding: 0.8em 0.625em;
+    text-align: left;
+    vertical-align: top;
+    font-size: .8em;
+    padding-left: 1.2em;
+}
+
+#s-bl th { 
+	font-family: inherit;
+    padding: 1.2em 1.2em;
+}
+
+#s-bl thead tr:first-child{
+    border-bottom: 1px solid #e9edf2;
+    border-color: var(--cc-cookie-table-border);
+}
+
+.force--consent #s-cnt,
+.force--consent #cs{
+    width: 100vw;
+}
+
+#cm-ov,
+#cs-ov{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    visibility: hidden;
+    opacity: 0;
+    background: #070707;
+    background: rgba(4, 6, 8, .85);
+    background: var(--cc-overlay-bg);
+    display: none;
+    transition: none;
+}
+
+.show--settings #cs-ov,
+.c--anim #cs-ov,
+.force--consent .c--anim #cm-ov,
+.force--consent.show--consent #cm-ov{
+    display: block;
+}
+
+#cs-ov{
+    z-index: 2;
+}
+
+.force--consent .cc_div{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    width: 100vw;
+    visibility: hidden;
+    transition: visibility .25s linear;
+}
+
+.force--consent.show--consent .c--anim .cc_div,
+.force--consent.show--settings .c--anim .cc_div{
+    visibility: visible;
+}
+
+.force--consent #cm{
+    position: absolute;
+}
+
+.force--consent #cm.bar{
+    width: 100vw;
+    max-width: 100vw;
+}
+
+html.force--consent.show--consent{
+    overflow-y: hidden!important;
+}
+
+html.force--consent.show--consent,
+html.force--consent.show--consent body{
+    height: auto!important;
+    overflow-x: hidden!important;
+}
+/** END BLOCK PAGE SCROLL */
+
+/** BEGIN ICONS **/
+.cc_div .b-bn .b-tl::before,
+.cc_div .act .b-bn .b-tl::before{
+    border: solid #2d4156;
+    border-color: var(--cc-btn-secondary-text);
+    border-width: 0 2px 2px 0;
+    padding: .2em;
+    display: inline-block;
+    position: absolute;
+    content: '';
+    margin-right: 15px;
+    position: absolute;
+    transform: translateY(-50%) rotate(45deg);
+    left: 1.2em;
+    top: 50%;
+}
+
+.cc_div .act .b-bn .b-tl::before{
+    transform: translateY(-20%) rotate(225deg);
+}
+
+.cc_div .on-i::before{
+    border: solid #fff;
+    border-color: var(--cc-toggle-knob-icon-color);
+    border-width: 0 2px 2px 0;
+    padding: .1em;
+    display: inline-block;
+    padding-bottom: .45em;
+    content: '';
+    margin: 0 auto;
+    transform: rotate(45deg);
+    top: .37em;
+    left: .75em;
+    position: absolute;
+}
+
+#s-c-bn::before,
+#s-c-bn::after{
+    content: '';
+    position: absolute;
+    left: .82em;
+    top: .58em;
+    height: .6em;
+    width: 1.5px;
+    background: #444d53;
+    background: var(--cc-btn-secondary-text);
+    transform: rotate(45deg);
+    border-radius: 1em;
+    margin: 0 auto;
+}
+
+#s-c-bn::after{
+    transform: rotate(-45deg);
+}
+
+.cc_div .off-i,
+.cc_div .on-i{
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    display: block;
+    text-align: center;
+    transition: opacity .15s ease;
+}
+
+.cc_div .on-i{
+    left: 0;
+    opacity: 0;
+}
+
+.cc_div .off-i::before,
+.cc_div .off-i::after{
+    right: .8em;
+    top: .42em;
+    content: ' ';
+    height: .7em;
+    width: .09375em;
+    display: block;
+    background: #cdd6dc;
+    background: var(--cc-toggle-knob-icon-color);
+    margin: 0 auto;
+    position: absolute;
+    transform-origin: center;
+}
+
+.cc_div .off-i::before {
+    transform: rotate(45deg);
+}
+.cc_div .off-i::after {
+    transform: rotate(-45deg);
+}
+
+.cc_div .b-tg .c-tgl:checked ~ .c-tg .on-i{
+    opacity: 1;
+}
+.cc_div .b-tg .c-tgl:checked ~ .c-tg .off-i{
+    opacity: 0;
+}
+/** END ICONS **/
+
+.force--consent #cm.box.middle,
+.force--consent #cm.cloud.middle{
+    top: 50%;
+    transform: translateY(-37%);
+    bottom: auto;
+}
+
+.force--consent #cm.box.middle.zoom,
+.force--consent #cm.cloud.middle.zoom{
+    transform: scale(.95) translateY(-50%);
+ 
+}
+
+#cm.box.center{
+    left: 1em;
+    right: 1em;
+    margin: 0 auto;
+}
+
+/* Start cloud layout */
+#cm.cloud {
+    max-width: 50em;
+    margin: 0 auto;
+    text-align: center;
+    left: 1em;
+    right: 1em;
+    overflow: hidden;
+    padding: 1.3em 2em;
+    width: unset;
+}
+
+.cc_div .cloud #c-inr{
+    display: table;
+    width: 100%;
+}
+
+.cc_div .cloud #c-inr-i{
+    width: 70%;
+    display: table-cell;
+    vertical-align: top;
+    padding-right: 2.4em;
+}
+
+.cc_div .cloud #c-txt{
+    margin-bottom: 0;
+    font-size: 0.85em;
+}
+
+.cc_div .cloud #c-bns{
+    min-width: 170px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#cm.cloud .c-bn{
+    margin: .625em 0 0 0;
+    width: 100%;
+}
+
+#cm.cloud .c-bn:first-child{
+    margin: 0;
+}
+
+#cm.cloud.left{
+    margin-right: 1.25em;
+}
+
+#cm.cloud.right{
+    margin-left: 1.25em;
+}
+/* End cloud layout */
+
+/* Start bar layout */
+#cm.bar {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    position: fixed;
+    padding: 2em;
+}
+
+#cm.bar #c-inr{
+    max-width: 32em;
+    margin: 0 auto;
+}
+
+#cm.bar #c-bns{
+    max-width: 33.75em;
+}
+
+#cm.bar #cs{
+    padding: 0;
+}
+
+.cc_div .bar #c-s-in{
+    top: 0;
+    transform: none;
+    height: 100%;
+    max-height: 100%;
+}
+
+.cc_div .bar #s-hdr,
+.cc_div .bar #s-bl,
+.cc_div .bar #s-bns {
+    padding-left: 1.6em;
+    padding-right: 1.6em;
+}
+
+.cc_div .bar #cs{
+    padding: 0;
+}
+
+/* align bar to right by default */
+.cc_div .bar #s-inr{
+    margin: 0;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 0;
+    max-width: 32em;
+}
+
+.cc_div .bar.left #s-inr{
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Force table to not be like tables anymore */
+.cc_div .bar #s-bl table, 
+.cc_div .bar #s-bl thead, 
+.cc_div .bar #s-bl tbody, 
+.cc_div .bar #s-bl th, 
+.cc_div .bar #s-bl td, 
+.cc_div .bar #s-bl tr,
+.cc_div .bar #s-cnt{ 
+    display: block; 
+}
+
+/* Hide table headers (but not display: none;, for accessibility) */
+.cc_div .bar #s-bl thead tr{ 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.cc_div .bar #s-bl tr{
+    border-top: 1px solid #e3e7ed;
+    border-color: var(--cc-cookie-table-border);
+}
+
+.cc_div .bar #s-bl td { 
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    padding-left: 35%; 
+}
+
+.cc_div .bar #s-bl td:before { 
+    position: absolute;
+    left: 1em;
+    padding-right: 0.625em;
+    white-space: nowrap;
+    content: attr(data-column);
+    color: #000;
+    color: var(--cc-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* End bar layout */
+
+/* Positions */
+#cm.top {
+    bottom: auto;
+    top: 1.250em;
+}
+
+#cm.left{
+    right: auto;
+    left: 1.250em;
+}
+
+#cm.right{
+    left: auto;
+    right: 1.250em;
+}
+
+#cm.bar.left,
+#cm.bar.right{
+    left: 0;
+    right: 0;
+}
+
+#cm.bar.top{
+    top: 0;
+}
+/* end positions */
+
+@media screen and (max-width: 688px) {
+
+    #cm,
+    #cm.cloud,
+    #cm.left,
+    #cm.right{
+        width: auto;
+        max-width: 100%;
+        margin: 0;
+        padding: 1.4em!important;
+        right: 1em;
+        left: 1em;
+        bottom: 1em;
+        display: block;
+    }
+
+    .force--consent #cm,
+    .force--consent #cm.cloud{
+        width: auto;
+        max-width: 100vw;
+    }
+
+    #cm.top{
+        top: 1em;
+        bottom: auto;
+    }
+
+    #cm.bottom{
+        bottom: 1em;
+        top: auto;
+    }
+
+    #cm.bar.bottom{
+        bottom: 0;
+    }
+    
+    .cc_div .cloud #c-txt{
+        font-size: .9em;
+    }
+
+    #cm.cloud .c-bn{
+        font-size: .85em;
+    }
+
+    #s-bns,
+    .cc_div .bar #s-bns{
+        padding: 1em 1.3em;
+    }
+
+    .cc_div .bar #s-inr{
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .cc_div .cloud #c-inr-i{
+        padding-right: 0;
+    }
+
+    #cs{
+        border-radius: 0;
+        padding: 0;
+    }
+
+    #c-s-in{
+        max-height: 100%;
+        height: 100%;
+        top: 0;
+        transform: none;
+    }
+
+    .cc_div .b-tg{
+        transform: scale(1.1);
+        right: 1.1em;
+    }
+
+    #s-inr{
+        margin: 0;
+        padding-bottom: 7.9em;
+        border-radius: 0;
+    }
+
+    #s-bns{
+        height: 7.9em;
+    }
+
+	#s-bl,
+    .cc_div .bar #s-bl{
+		padding: 1.3em;
+    }
+    
+	#s-hdr,
+    .cc_div .bar #s-hdr{
+        padding: 0 1.3em;
+    }
+
+    /** dynamic table layout **/
+    #s-bl table { 
+        width: 100%; 
+    }
+
+    #s-inr.bns-t{
+        padding-bottom: 10.5em;
+    }
+
+    .bns-t #s-bns{
+        height: 10.5em;
+    }
+
+    .cc_div .bns-t .c-bn{
+        font-size: 0.83em;
+        padding: .9em 1.6em;
+    }
+
+    #s-cnt .b-bn .b-tl{
+        padding-top: 1.2em;
+        padding-bottom: 1.2em;
+    }
+
+    /* Force table to not be like tables anymore */
+    #s-bl table, 
+    #s-bl thead, 
+    #s-bl tbody, 
+    #s-bl th, 
+    #s-bl td, 
+    #s-bl tr,
+    #s-cnt{ 
+        display: block; 
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    #s-bl thead tr{ 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    #s-bl tr{
+        border-top: 1px solid #e3e7ed;
+        border-color: var(--cc-cookie-table-border);
+    }
+
+    #s-bl td { 
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 35%; 
+    }
+
+    #s-bl td:before { 
+        position: absolute;
+        left: 1em;
+        padding-right: 0.625em;
+        white-space: nowrap;
+        content: attr(data-column);
+        color: #000;
+        color: var(--cc-text);
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #cm .c-bn,
+    .cc_div .c-bn{
+        width: 100%;
+        margin-right: 0;
+    }
+
+    #s-cnt #s-rall-bn{
+        margin-left: 0;
+    }
+
+    #c-bns button + button,
+    #s-cnt button + button{
+        margin-top: 0.625em;
+        float: unset;
+    }
+
+    #cm.cloud,
+    #cm.box{
+        left: 1em;
+        right: 1em;
+        width: auto;
+    }
+
+    #cm.cloud.right,
+    #cm.cloud.left{
+        margin: 0;
+    }
+
+    .cc_div .cloud #c-bns,
+    .cc_div .cloud #c-inr,
+    .cc_div .cloud #c-inr-i{
+        display: block;
+        width: auto;
+        min-width: unset;
+    }
+
+    .cc_div .cloud #c-txt{
+        margin-bottom: 1.625em
+    }
+}
+
+/* Begin IE fixes */
+.cc_div.ie #c-vln{
+	height: 100%;
+	padding-top: 5.62em;
+}
+
+.cc_div.ie .bar #c-vln{
+    padding-top: 0;
+}
+
+.cc_div.ie #cs{
+    max-height: 37.5em;
+    position: relative;
+	top: 0;
+	margin-top: -5.625em;
+}
+
+.cc_div.ie .bar #cs{
+    margin-top:0;
+    max-height: 100%;
+}
+
+.cc_div.ie #cm{
+    border: 1px solid #dee6e9;
+}
+
+.cc_div.ie #c-s-in{
+    top: 0;
+}
+
+.cc_div.ie .b-tg{
+	padding-left: 1em;
+	margin-bottom: 0.7em;
+}
+
+.cc_div.ie .b-tg .c-tgl:checked ~ .c-tg:after{
+    left: 1.95em;
+}
+
+.cc_div.ie #s-bl table{
+	overflow: auto;
+}
+
+.cc_div.ie .b-tg .c-tg{
+    display: none;
+}
+
+.cc_div.ie .b-tg .c-tgl{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 0.2em;
+    height: auto;
+}
+
+.cc_div.ie #s-cnt .b-bn .b-tl{
+    padding: 1.3em 6.4em 1.3em 1.4em
+}
+
+.cc_div.ie  .bar #s-bl td:before{
+    display: none;
+}
+
+.cc_div.ie .bar #s-bl td{
+    padding: 0.8em 0.625em 0.8em 1.2em;
+}
+
+.cc_div.ie .bar #s-bl thead tr{
+    position: relative;
+}
+
+.cc_div.ie .b-tg .t-lb{
+    filter: alpha(opacity=0);
+}
+
+.cc_div.ie #cm-ov,
+.cc_div.ie #cs-ov{
+    filter: alpha(opacity=80);
+}
+
+/** END IE FIXES **/</style><style>
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */</style></head>
+<body>
+<div class="header">
+    <div class="header-content">
+		<div class="brand"><a href="https://flows.nodered.org/">Node-RED</a></div>
+        <ul class="navigation">
+            <li><a href="https://nodered.org/">home</a></li>
+			<li><a href="https://nodered.org/about">about</a></li>
+            <li><a href="https://nodered.org/blog">blog</a></li>
+            <li><a href="https://nodered.org/docs/">documentation</a></li>
+			<li><a href="https://discourse.nodered.org/">forum</a></li>
+            <li class="current"><a href="https://flows.nodered.org/">flows</a></li>
+            <li><a href="https://github.com/node-red">github</a></li>
+        </ul>
+		<a href="https://flows.nodered.org/node/node-red-dashboard#" class="menu"><i class="icon-menu"></i></a>
+    </div>
+</div>
+<div class="library">
+<script>
+//window.addEventListener('load', function(){
+    // obtain cookieconsent plugin
+    var cookieconsent = initCookieConsent();
+
+    // run plugin with config object
+    cookieconsent.run({
+        autorun : true,
+        current_lang : 'en',
+        autoclear_cookies : true,
+        page_scripts: true,
+        theme_css: '/css/cc.css',
+        use_rfc_cookie: true,
+        onAccept: function(cookie){ },
+        onChange: function(cookie, changed_preferences){ },
+        languages : {
+            en : {
+                consent_modal : {
+                    title :  "This site uses cookies",
+                    description :  'We use cookies to ensure this site\'s proper operation and, if you approve, functionality cookies for certain interactive features of this site. If you wish to opt-out from the use of cookies please see our <a aria-label="Cookie policy" class="cc-link" href="https://www.linuxfoundation.org/cookies">Cookies Policy.</a>.',
+                    primary_btn: { text: 'Accept', role: 'accept_all' },
+                    secondary_btn: { text : 'Settings...', role : 'settings' }
+                },
+                settings_modal : {
+                    title : 'Cookie options',
+                    save_settings_btn : "Save settings",
+                    accept_all_btn : "Accept all",
+                    reject_all_btn : "Reject all",
+                    cookie_table_headers : [
+                        {col1: "Name" },
+                        {col2: "Domain" },
+                        {col3: "Expiration" },
+                        {col4: "Description" },
+                        {col5: "Type" }
+                    ],
+                    blocks : [
+                        {
+                            title : "Cookie usage",
+                            description: 'We use cookies to ensure the basic functionality of the website and to enhance your online experience. You can opt-in/out of receiving non-essential cookies.'
+                        },{
+                            title : "Strictly necessary cookies",
+                            description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.',
+                            toggle : {
+                                value : 'necessary',
+                                enabled : true,
+                                readonly: true
+                            }
+                        },{
+                            title : "Functionality cookies",
+                            description: 'These cookies are used for interactive functionality such as rating, Without these cookies certain  features may not be available.',
+                            toggle : {
+                                value : 'functionality',
+                                enabled : true,
+                                readonly: false
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    });
+//});
+</script><form id="search-form" method="get" action="https://flows.nodered.org/search">
+<div class="toolbar">
+  <div class="grid">
+    <div class="col-1-1">
+        <div style="position: relative">
+            <div class="gist-filter">
+                <input autocomplete="off" id="filter-term" name="term" class="gist-filter-input" type="text" value="" placeholder="Search library">
+                <span class="filter-term-spinner"></span>
+                <div class="filter-results">
+                    <ul></ul>
+                </div>
+                <script>
+                    $(".filter-results").on('mousedown', function(evt) { evt.stopPropagation(); });
+                    $("#filter-term").keyup(utils.debounce(function() {
+                        if ($("#filter-term").val().trim() === "") {
+                            $(".filter-term-spinner").hide();
+                            $(".filter-results").hide();
+                        }
+                        $(".filter-term-spinner").show();
+                    }, function() {
+                        var list = $(".filter-results ul");
+                        list.empty();
+                        var term = $("#filter-term").val().trim();
+                        $(document).off('mousedown.search-menu');
+                        if (term === "") {
+                            $(".filter-results").hide();
+                            $(".filter-term-spinner").hide();
+                        } else {
+                            utils.loadThingSummary('/things?format=json&per_page=6&term='+encodeURIComponent(term)).then(function(results) {
+                                $(".filter-term-spinner").hide();
+                                var data = results.data || [];
+                                if (data.length) {
+                                    data.forEach(function(d) {
+                                        var link = $('<a/>');
+                                        var label = $('<span/>').appendTo(link);
+                                        var type = $('<span class="filter-result-type"/>').appendTo(link);
+                                        if (d.isNode) {
+                                            link.attr("href","/node/"+d.name)
+                                            label.text(d.name);
+                                            type.addClass("filter-result-node");
+                                            type.text("node");
+                                        } else if (d.isFlow) {
+                                            link.attr("href","/flow/"+d._id)
+                                            label.text(d.description);
+                                            type.addClass("filter-result-flow");
+                                            type.text("flow")
+                                        } else if (d.isCollection) {
+                                            link.attr("href","/collection/"+d._id)
+                                            label.text(d.name);
+                                            type.addClass("filter-result-collection");
+                                            type.text("collection")
+                                        }
+                                        $('<li>').appendTo(list).append(link);
+                                    })
+                                    $('<li>',{style:"text-align: right"}).appendTo(list).append($('<a>').attr("href","/search?term="+encodeURIComponent(term)).html("see more ("+results.meta.results.count+')<i class="icon-caret-right"></i>'));
+                                } else {
+                                    $('<li>').appendTo(list).append($('<span>').text("Nothing found"));
+                                }
+                                $(".filter-results").show();
+                                $(document).one('mousedown.search-menu', function(evt) {
+                                    $(".filter-results").hide();
+                                });
+                            })
+                        }
+                    }, 500));
+                </script>
+            </div>
+            <span class="buttons">
+                <a href="https://flows.nodered.org/add"><i class="icon-plus"></i></a>
+                 <a class="signin" href="https://flows.nodered.org/login?return=/node/node-red-dashboard"><span>Sign in with <b>GitHub</b></span><i class="icon-github"></i></a>
+                <script>$(function() { $(".signin").attr('href','/login?return='+window.location.pathname);});</script>
+                            </span>
+        </div>
+    </div>
+  </div>
+</div>
+</form>
+
+<div class="grid thing-list-section main-content">
+    <div class="col-9-12 docs-content">
+        <h1 class="flow-title" style="margin-bottom: 10px;">node-red-dashboard <span class="flow-version">3.5.0</span></h1>
+        <p class="flow-description">A set of dashboard nodes for Node-RED</p>
+        <p class="flowmeta flow-install">
+            <i class="icon-download-alt"></i> <code>npm install node-red-dashboard</code>
+            <span class="flow-install-help"><a target="_blank" href="https://nodered.org/docs/getting-started/adding-nodes.html"><i class="icon-question-sign"></i></a></span>
+        </p>
+          
+<p><a href="https://nodered.org/"><img src="./node-red-dashboard (node) - Node-RED_files/platform-Node--RED-red" alt="platform"></a>
+<img src="./node-red-dashboard (node) - Node-RED_files/node-red-dashboard.svg" alt="NPM version">
+<img src="./node-red-dashboard (node) - Node-RED_files/node-red-dashboard" alt="NPM"></p>
+<p>This module provides a set of nodes in Node-RED to quickly create a live data dashboard.</p>
+<p>These nodes require node.js version 12 or more recent. The last version to support node v8 was 2.30.0.</p>
+<p>From version 2.10.0 you can create and install widget nodes like other Node-RED nodes.
+See the <a href="https://github.com/node-red/node-red-dashboard/wiki/Creating-New-Dashboard-Widgets">Wiki</a> for more information.</p>
+<p>For the latest updates see the <a href="https://github.com/node-red/node-red-dashboard/blob/master/CHANGELOG.md">CHANGELOG.md</a></p>
+<p><strong>NOTE:</strong> This project is based on Angular v1 - As that is now no longer maintained, this project should be considered to be on "life support". Small patches will be applied on a best can do basis, but there will be no major feature upgrades, and underlying security breakage may occur.</p>
+<p><img src="./node-red-dashboard (node) - Node-RED_files/dashboarde.png" alt="Dashboard example"></p>
+<h2 id="pre-requisites">Pre-requisites</h2>
+<p>The Node-RED-Dashboard requires <a href="https://nodered.org/">Node-RED</a> to be installed.</p>
+<h2 id="install">Install</h2>
+<p>To install the stable version use the <code>Menu - Manage palette</code> option and search for <code>node-red-dashboard</code>, or run the following command in your Node-RED user directory - typically <code>~/.node-red</code>:</p>
+<pre><code>npm i node-red-dashboard
+</code></pre>
+<p>Restart your Node-RED instance and you should have UI nodes available in the palette and a new <code>dashboard</code> tab in the
+right side panel. The UI interface is available at <a href="http://localhost:1880/ui">http://localhost:1880/ui</a> (if the default settings are used).</p>
+<p>If you want to try the latest version from github, you can install it by</p>
+<pre><code>npm i node-red/node-red-dashboard
+</code></pre>
+<h2 id="settings">Settings</h2>
+<p>The default url for the dashboard is based off your existing Node-RED httpRoot path with /ui added. This can be changed in your Node-RED settings.js file.</p>
+<pre><code>ui: { path: "ui" },
+</code></pre>
+<p>You can also add your own express middleware to handle the http requests by using the <code>ui: { middleware: your_function }</code> property in settings.js. For example</p>
+<pre><code>ui: { middleware: function (req, res, next) {
+            // Do something more interesting here.
+            console.log('LOGGED')
+            next()
+        }
+    },
+</code></pre>
+<p>You can also add middleware to the websocket connection using</p>
+<pre><code>ui: { ioMiddleware: function (socket, next) {
+            // Do something more interesting here.
+            console.log('HELLO')
+            next()
+        }
+    },
+</code></pre>
+<p><strong>Note</strong>: both of these also accept an array of functions if you need to pass in multiple middleware actions.</p>
+<p>Setting your own ioMiddleware will disable the default cross domain origin check.</p>
+<p>You can also set the dashboard to be read only by <code>ui: { readOnly: true }</code>. This does not stop the user interacting with the dashboard but does ignore all updates coming from the dashboard.</p>
+<p>Finally you can customise the default Group name (for i18n) by setting</p>
+<pre><code>ui: { defaultGroup: "Better Default" }
+</code></pre>
+<p>You can of course combine any combination of these properties</p>
+<h2 id="layout">Layout</h2>
+<p>The dashboard layout should be considered as a grid.</p>
+<p>Each <strong>group</strong> element has a width - by default 6 'units' (a unit is 48px wide by default with a 6px gap).</p>
+<p>Each <strong>widget</strong> in the group also has a width - by default, 'auto' which means it will fill the width of the group it is in, but you can set it to a fixed number of units.</p>
+<p>The layout algorithm of the dashboard always tries to place items as high and to the left as they can within their container - this applies to how groups are positioned on the page, as well as how widgets are positioned in a group.</p>
+<p>Given a group with width 6, if you add six widgets, each with a width of 2, then they will be laid out in two rows - three widgets in each.</p>
+<p>If you add two groups of width 6, as long as your browser window is wide enough, they will sit alongside each other. If you shrink the browser, at some point the second group will shift to be below the first, in a column.</p>
+<p>It is advisable to use multiple groups if possible, rather than one big group, so that the page can dynamically resize on smaller screens.</p>
+<h2 id="features">Features</h2>
+<h4 id="dashboard-sidebar">Dashboard sidebar</h4>
+<p>The widget layout is managed by a <code>dashboard</code> tab in the sidebar of the Node-RED editor.</p>
+<h5 id="layout-1">Layout</h5>
+<ul>
+<li><p><strong>Tabs</strong> - From here you can re-order the tabs, groups and widgets, and add and edit their properties. You can also open the layout tools that may help you organise the widgets more easily than via the sidebar.</p>
+</li>
+<li><p><strong>Links</strong> - to other web pages can also be added to the menu. They can optionally be opened in an iframe - if allowed by the target page.</p>
+</li>
+</ul>
+<h5 id="site">Site</h5>
+<ul>
+<li><p><strong>Title</strong> - the <code>title</code> of the UI page can be set.</p>
+</li>
+<li><p><strong>Options</strong> - optionally hide the title bar, and allow swiping sideways between tabs on a touch screen. You can also set whether the template uses the selected theme or uses the underlying Angular Material theme. You can also choose to use the Angular Material theme everywhere.</p>
+</li>
+<li><p><strong>Date Format</strong> - sets the default date format for chart and other labels.</p>
+</li>
+<li><p><strong>Sizes</strong> - sets the basic geometry of the grid layout in pixels. The <strong>width</strong> and <strong>height</strong> of widgets can be set, as can the width of <em>groups</em>. These are the basic definitions of the "units' used elsewhere within the dashboard.</p>
+</li>
+</ul>
+<h5 id="theme">Theme</h5>
+<ul>
+<li><strong>Style</strong> - the theme and font of the UI is set in the dashboard sidebar. You can select a default Light, Dark or Custom Theme. You cannot have different themes for each tab.</li>
+</ul>
+<p>You can also choose to use the basic Angular Material themes instead if you like, either just within any ui_templates or for the whole Dashboard. This will only affect angular components so some of the charts and so on may need extra work.</p>
+<p><strong>Note</strong>: For users creating their own templates the following CSS variable names are available
+to help pick up the theme colours.</p>
+<ul>
+<li>--nr-dashboard-pageBackgroundColor</li>
+<li>--nr-dashboard-pageTitlebarBackgroundColor</li>
+<li>--nr-dashboard-pageSidebarBackgroundColor</li>
+<li>--nr-dashboard-groupBackgroundColor</li>
+<li>--nr-dashboard-groupTextColor</li>
+<li>--nr-dashboard-groupBorderColor</li>
+<li>--nr-dashboard-widgetColor</li>
+<li>--nr-dashboard-widgetTextColor</li>
+<li>--nr-dashboard-widgetBgndColor</li>
+</ul>
+<h4 id="widgets">Widgets</h4>
+<p>Don't forget there are also extra ui widgets available on the <a href="http://flows.nodered.org/">Node-RED flows</a> website. Search for node-ui- or contrib-ui- .</p>
+<p>Group labels are optional.</p>
+<p>Most widgets can have a label and value - both of these can be specified by properties of the incoming msg if required, and modified by angular filters. For example the label can be set to <code>{{msg.topic}}</code>, or the value could be set to <code>{{value | number:1}}%</code> to round the value to one decimal place and append a % sign.</p>
+<p>Each node may parse the <code>msg.payload</code> to make it suitable for display. This converted version is exposed as the variable called <code>value</code>, (see example above).</p>
+<p>Any widget can be disabled by passing in a <code>msg.enabled</code> property set to <code>false;</code>. <em>Note:</em> this doesn't stop the widget receiving messages but does stop inputs being active and does re-style the widget.</p>
+<p>Most widgets and the ui <strong>group</strong> can have a CSS class or multiple CSS class names. This permits the user to override styles one or more widgets and their inner contents. e.g to colourise a warning toast, add the CSS class <code>notification-warn</code> to the <strong>notification</strong> widget and add a <strong>ui-template</strong> (set to "Add to site head section")...</p>
+<pre><code class="language-html">&lt;style&gt;
+  md-toast.notification-warn {
+    border-width: 10px;
+    border-color: darkorange;
+  }
+  md-toast.notification-warn &gt; h3 {
+    background-color: orange;
+  }
+  md-toast.notification-warn &gt; div {
+    background: rgba(245, 173, 66, 0.5);
+    color: darkorange;
+  }
+&lt;/style&gt;
+</code></pre>
+<p>Additionally, any widget that has a Class field can be dynamically updated by passing in a <code>msg.className</code> string property set to one or more class names.</p>
+<p>Most ui widgets can also be configured by using a <code>msg.ui_control</code> message - see <strong><a href="https://github.com/node-red/node-red-dashboard/blob/master/config-fields.md">config-fields.md</a></strong>
+for further details.</p>
+<ul>
+<li><p><strong>Audio out</strong> - a widget that will let you play audio (wav or mp3) or send Text to Speech (TTS) to the client.</p>
+</li>
+<li><p><strong>Button</strong> - the icon can be set using either Material or fa-icons - the colour and background colour may also be set. If the widget is sized to 1 wide the icon has precedence.</p>
+</li>
+<li><p><strong>Chart</strong> - has both line, bar and pie chart modes. Also the X-Axis labels can be customised using a date formatter string. See <strong><a href="https://github.com/node-red/node-red-dashboard/blob/master/Charts.md">this document</a></strong> for more information on the chart data formats accepted.</p>
+</li>
+<li><p><strong>Colour Picker</strong> - a colour picker widget.</p>
+</li>
+<li><p><strong>Date Picker</strong> - a date picker widget. The displayed Date format can be specified in the Site tab using moment.js formatting.</p>
+</li>
+<li><p><strong>Dropdown</strong> - a dropdown select widget has been added. Multiple label, value pairs can be specified. The choices can also be set via <code>msg.options</code> containing an array of objects. If just text then the value will be the same as the label, otherwise you can specify both by using an object of "label":"value" pairs :</p>
+<pre><code>[ "Choice 1", "Choice 2", {"Choice 3": 3} ]
+</code></pre>
+<p> Setting <code>msg.payload</code> will pre-select the value in the dropdown.</p>
+</li>
+<li><p><strong>Form</strong> - a widget that can be composed of several sub-widgets. When submitted all values are submitted as a single message.</p>
+</li>
+<li><p><strong>Gauge</strong> - has 4 modes - <em>standard</em> (simple gauge), <em>donut</em> (complete 360°), <em>compass</em>, and <em>wave</em>. You can also specify the colour range of the standard and donut gauges.</p>
+</li>
+<li><p><strong>Notification</strong> - creates alerts to the user - can either be a toast popup, or a dismissable alert box. The alert may be targeted to a single user.</p>
+</li>
+<li><p><strong>Numeric</strong> - a Numeric input widget with up/down buttons.</p>
+</li>
+<li><p><strong>Slider</strong> - a simple horizontal slider, with variable step size.</p>
+</li>
+<li><p><strong>Switch</strong> - can also set two icons and/or colours depending on state.</p>
+</li>
+<li><p><strong>Template</strong> - the template node allows the user to specify and create their own widgets within the framework using HTML, Javascript. This is an Angular.js widget. You may also use this to override the built in CSS styles.</p>
+</li>
+<li><p><strong>Text</strong> - A read only widget, the layout of the <code>label</code>, and <code>value</code> can be configured.</p>
+</li>
+<li><p><strong>Text input</strong> - text input box, with optional label, can also support password, email and colour modes.</p>
+</li>
+<li><p><strong>UI-Control</strong> - allows some dynamic control of the dashboard. Sending a <code>msg.payload</code> of the tab number (from 0) or tab_name will switch to that tab. Tabs can be enabled/disabled/hide/show via msg like <code>{"tabs":{"hide":["tab_name_with_underscores"],"show":["another_tab_name"],"disable":["unused_tab_name"]}}</code>.
+  Groups can be hidden and made visible via a msg like <code>{"group":{"hide":["tab_name_group_name_with_underscores"],"show":["tab_name_another_group"],"focus":true}}</code>. Outputs a <code>msg.payload</code> for every browser <em>connect</em> and <em>loss</em>, and every tab <em>change</em>. This can be used to trigger other actions like resetting the visibility of tabs and groups.</p>
+</li>
+</ul>
+<p><strong>Tip:</strong> The <em>Text</em> widget will accept html - so you can use it together with the <em>fa-icons</em> we
+already use to create indicator type widgets.</p>
+<h2 id="icons">Icons</h2>
+<p>The dashboard has 4 sets of icons built in. They are</p>
+<ul>
+<li><a href="https://klarsys.github.io/angular-material-icons/">Angular Material icons</a> : e.g. <code>send</code></li>
+<li><a href="https://fontawesome.com/v4.7.0/icons/">Font Awesome 4.7</a> : e.g. <code>fa-fire fa-2x</code></li>
+<li><a href="https://github.com/Paul-Reed/weather-icons-lite/blob/master/css_mappings.md">Weather Icons Lite</a> : e.g. <code>wi-wu-sunny</code></li>
+<li><a href="https://jossef.github.io/material-design-icons-iconfont/">Material Design Iconfont</a> ; e.g. <code>mi-alarm_on</code> - note add mi- to the icon name in the iconset.</li>
+</ul>
+<p>And one that can only be used if you have a permanent connection to the internet</p>
+<ul>
+<li><a href="https://iconify.design/icon-sets/">Iconify</a> : e.g. <code>iconify-mdi:car-battery 48px</code></li>
+</ul>
+<p>Again note you have to add <code>iconify-</code> to the icon name in the icon set of your choice. You may also optionally specify a size in standard px or em notation. Default is 24px. You must also add a <strong>ui_template</strong> node that loads the necessary iconify library into the header of the dashboard. It should contain</p>
+<pre><code>&lt;script src="https://code.iconify.design/1/1.0.7/iconify.min.js"&gt;&lt;/script&gt;
+</code></pre>
+<p>Once you have done that then you can also use them more generally, for example</p>
+<pre><code>&lt;span class="iconify icon:wi:sunset icon-inline:false"&gt;&lt;/span&gt;
+</code></pre>
+<p>You may also create your own set of icons using <a href="https://icofont.com/icons">Icofont</a>. Once downloaded you can serve them locally via Node-RED and add them to the head of the dashboard page by using a ui_template node : e.g.</p>
+<pre><code>&lt;link rel="stylesheet" href="myserver/path/icofont.css"&gt;
+</code></pre>
+<p>then you can use then as per above by adding the icofont- prefix e.g. <code>icofont-badge</code></p>
+<p>Or just use them in a template</p>
+<pre><code>&lt;link rel="stylesheet" href="/css/icofont.css"&gt;
+&lt;div style="display: flex;height: 100%;justify-content: center;align-items: center;"&gt;
+&lt;i class="icofont icofont-4x icofont-hail"&gt;&lt;/i&gt;
+&lt;/div&gt;
+</code></pre>
+<p> And finally via an image - https://{myserver/path/image.png}</p>
+<p>You can use them in any of the Icon fields. You may also be able to use some of them for example in labels via their inline style eg <code>&lt;i class="fa fa-flag"&gt;&lt;/i&gt;</code></p>
+<h2 id="loading-the-dashboard">Loading the Dashboard</h2>
+<p>Due to the size of the dashboard libraries it can take a long time to load if you are running on wireless network. It is possible add a custom loading page if you wish. To do so add a file called <code>loading.html</code> to the <code>node_modules/node-red-dashboard/dist/</code> folder. A simple example could be</p>
+<pre><code> &lt;div&gt;&lt;i class="fa fa-spin fa-5x fa-spinner"&gt;&lt;/i&gt;&lt;/div&gt;
+</code></pre>
+<h2 id="securing-the-dashboard">Securing the Dashboard</h2>
+<p>You can use the <code>httpNodeAuth</code> property in your Node-RED settings.js file to secure the Dashboard as it is
+created the same way as other HTTP nodes are. The details can be found at the bottom of this page in the
+docs <a href="http://nodered.org/docs/security">http://nodered.org/docs/security</a></p>
+<h2 id="multiple-users">Multiple Users</h2>
+<p>This Dashboard does NOT support multiple individual users. It is a view of the status of the underlying
+Node-RED flow, which itself is single user. If the state of the flow changes then all clients will get
+notified of that change.</p>
+<p>Messages coming from the dashboard <strong>do</strong> have a <code>msg.socketid</code>, and updates like change of tab,
+notifications, and audio alerts will be directed only to that session. Delete the <code>msg.sessionid</code> to send
+to all sessions.</p>
+<h2 id="discussions-and-suggestions">Discussions and suggestions</h2>
+<p>Use the Node-RED Discourse Forum: <a href="https://discourse.nodered.org/c/dashboard">https://discourse.nodered.org/c/dashboard</a>
+or the Dashboard-ui channel in <a href="http://nodered.org/slack/">Slack</a> to ask
+questions or to discuss new features.</p>
+<p>The current work in progress list is shown in the
+<a href="https://github.com/node-red/node-red-dashboard/projects/1" target="_blank"> Github Project</a>.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Before raising a pull-request, please read our
+<a href="https://github.com/node-red/node-red-dashboard/blob/master/CONTRIBUTING.md">contributing guide</a>.</p>
+<p>This project adheres to the <a href="http://contributor-covenant.org/version/1/4/">Contributor Covenant 1.4</a>.
+By participating, you are expected to uphold this code. Please report unacceptable
+behavior to any of the <a href="https://github.com/orgs/node-red/teams/core">project's core team</a>.</p>
+<h2 id="developers">Developers</h2>
+<pre><code>cd ~\.node-red\node_modules
+git clone https://github.com/node-red/node-red-dashboard.git
+cd node-red-dashboard
+npm install
+</code></pre>
+<p>The plugin uses the <code>dist</code> folder if it exists. Make sure it has been deleted if you want to use the non-minified version while developing.
+After finishing changes to the front-end code in the src folder, you can use <code>gulp</code> to update and rebuild the minified files and update the <em>appcache</em> manifest.</p>
+<pre><code>gulp
+</code></pre>
+<p>We also have suggested <em>lint</em> and <em>js</em> styles that can be checked with:</p>
+<pre><code>gulp lint
+gulp jscs
+</code></pre>
+<p>If submitting a Pull Request (PR) please do NOT include the minified <code>/dist</code> files.</p>
+<p>Thank you.</p>
+<img src="./node-red-dashboard (node) - Node-RED_files/dashboardl.png">
+
+    </div>
+    <div class="col-3-12">
+          <div class="flowmeta">
+            <h4>Node Info</h4>
+            <div class="flowinfo"> Version: 3.5.0</div>
+            <div class="flowinfo">  Updated 2 weeks, 2 days ago</div>
+            <div class="flowinfo">License: Apache-2.0</div>
+            <div class="flowinfo">Rating:  4.7<i class="icon-star"></i> 74<i class="icon-user"></i></div>
+            <div class="flowinfo"><a target="_blank" href="https://npmjs.org/package/node-red-dashboard">View on npm</a></div>
+            <div class="flowinfo"><a target="_blank" href="https://github.com/node-red/node-red-dashboard">View on GitHub</a></div>
+                <div class="flowinfo">
+                    <a class="scorecard-summary" style="display: flex" href="https://flows.nodered.org/node/node-red-dashboard/scorecard">
+                        <span class="scorecard-link" style="flex-grow:1">View Scorecard</span>
+                        <span style="text-align: right;">
+                            <span class="scorecard_pass"><i class="fa scorecard_pass fa-check" aria-hidden="true" title="yes"></i> 9</span>
+                            <span class="scorecard_warn"><i class="fa scorecard_warn fa-exclamation" aria-hidden="true" title="no"></i> 3</span>
+                            
+                        </span>
+                    </a>
+                </div>
+          </div>
+
+          <div class="flowmeta">
+            <h4>Actions</h4>
+            <form id="form-rate" action="https://flows.nodered.org/node/node-red-dashboard/rate" method="POST" style="display: none;">
+                <input name="_csrf" type="hidden" value="UzyID8f3-lKBlvn1nqfWve2Cl5hVIhO0ILw4">
+                <input name="rating" type="hidden">
+                <div class="flowinfo">Rate: <span id="set-stars"></span></div>
+            </form>
+          </div>
+
+
+          <div class="flowmeta">
+            <h4>Downloads</h4>
+            <div class="flowinfo"><span class="flow-stat flow-stat-week">12627</span> in the last week</div>
+          </div>
+              <div class="flowmeta">
+                <h4>Nodes</h4>
+                 <ul style="list-style-type: none; padding:0; margin: 10px 20px;">
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:;">
+                      
+                      
+                      <div class="palette_label">ui_base</div>
+                      
+                      
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_button)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_button</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_dropdown)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_dropdown</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_switch)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_switch</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_slider)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_slider</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_numeric)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_numeric</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_text_input)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_text_input</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_date_picker)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_date_picker</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_colour_picker)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_colour_picker</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(176, 223, 227);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_form)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_form</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(119, 198, 204);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_text)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_text</div>
+                      
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(119, 198, 204);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_gauge)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_gauge</div>
+                      
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(119, 198, 204);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_chart)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_chart</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(119, 198, 204);">
+                      
+                      <div class="palette_icon" style="background-image: url(/icons/node-red-dashboard/ui_audio)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_audio</div>
+                      
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb(119, 198, 204);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_toast)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_toast</div>
+                      
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb( 63, 173, 181);">
+                      
+                      <div class="palette_icon" style="background-image: url(/icons/node-red-dashboard/ui_ui_control)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_ui_control</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb( 63, 173, 181);">
+                      
+                      <div class="palette_icon" style="background-image: url(https://node-red-flow-library.s3.eu-west-2.amazonaws.com/nodes/node-red-dashboard/ui_template)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_template</div>
+                      <div class="palette_port palette_port_output"></div>
+                      <div class="palette_port palette_port_input"></div>
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:rgb( 63, 173, 181);">
+                      
+                      <div class="palette_icon" style="background-image: url(/icons/node-red-dashboard/ui_link)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_link</div>
+                      
+                      
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:;">
+                      
+                      
+                      <div class="palette_label">ui_tab</div>
+                      
+                      
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:;">
+                      
+                      
+                      <div class="palette_label">ui_group</div>
+                      
+                      
+                      </div>
+                  </li>
+                  <li style="margin-bottom: 5px;">
+                      <div class="palette_node palette_node_" style="background-color:#D4F0F8;">
+                      
+                      <div class="palette_icon" style="background-image: url(/icons/node-red-dashboard/ui_spacer)"></div>
+                      <div class="palette_label" style="margin-left: 28px">ui_spacer</div>
+                      
+                      
+                      </div>
+                  </li>
+                  </ul>
+              </div>
+          <div class="flowmeta">
+            <h4>Keywords</h4>
+            <ul class="flow-tags">
+            <li>node-red</li>
+            </ul>
+          </div>
+          <div class="flowmeta">
+            <h4>Maintainers</h4>
+            <ul>
+            <li><a href="https://flows.nodered.org/user/knolleary">knolleary</a></li>
+            <li><a href="https://flows.nodered.org/user/dceejay">dceejay</a></li>
+            </ul>
+            <h4>Contributors</h4>
+            <ul>
+            <li>Andrei Tatar</li>
+            <li>Dave Conway-Jones</li>
+            <li>Joe Pavitt</li>
+            <li>Nick O'Leary</li>
+            <li>Dan Cunnington</li>
+            <li>Laurence Stant</li>
+            <li>Camille Boissel</li>
+            <li>Hiroyasu Nishiyama</li>
+            <li>Steve Rickus</li>
+            <li>Kazuhiro Ito</li>
+            <li>@fellinga</li>
+            <li>@petslane</li>
+            <li>@hotNipi</li>
+            <li>@Steve-Mcl</li>
+          </ul></div>
+      </div>
+</div>
+<div class="dialog-shade dialog-fixed" id="report-node-shade">
+    <div class="dialog" id="report-node-dialog">
+        <form action="https://flows.nodered.org/node/node-red-dashboard/report" method="POST">
+            <input name="_csrf" type="hidden" value="UzyID8f3-lKBlvn1nqfWve2Cl5hVIhO0ILw4">
+        <h4>Report this module</h4>
+        <p>If you have a concern about the contents of this module, please let us know.
+            For example, if you believe it contains unsuitable or inappropriate material.</p>
+        <p><b>This is not a way to get help with this module.</b> For that, please
+            contact its maintainers directly or post to the <a href="https://discourse.nodered.org/" target="_blank">Node-RED Forum</a>.</p>
+        <p>Please provide some details about the module:</p>
+        <div><textarea name="details" id="details"></textarea></div>
+        <div class="dialog-buttons">
+            <button type="button" onclick="return closeDialog();">Cancel</button> <button type="submit">Report</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<script src="./node-red-dashboard (node) - Node-RED_files/jquery.raty-fa.js"></script>
+<script>
+    $.fn.raty.defaults.hints = ['bad', 'poor', 'regular', 'good', 'awesome'];
+    $.fn.raty.defaults.space = false;
+    $.fn.raty.defaults.space = false;
+    $.fn.raty.defaults.starHalf = "icon-star-half";
+    $.fn.raty.defaults.starOff = "icon-star-empty";
+    $.fn.raty.defaults.starOn = "icon-star";
+    $.fn.raty.defaults.cancelOff = "icon-trash";
+    $.fn.raty.defaults.cancelOn = "icon-trash";
+
+    function rate(e) {
+        $("input[name=rating]").val(e);
+        $("#form-rate").submit();
+    };
+
+    if (cookieconsent.allowedCategory('functionality')) { 
+        $("#set-stars").raty({
+        
+        cancel: true,
+        click: utils.debounce(rate, 1000)});
+    }  else {
+        $("#form-rate" ).hide()
+    }
+    
+</script><script>
+    $(function() {
+        $("#report-node").click(function(e) {
+            $("body").css({height:"100%",overflow:"hidden"});
+            e.preventDefault();
+            $("#report-node-shade").show();
+        });
+
+        var refreshSubmitted = false;
+
+        $('#refresh-button').click(function(e) {
+            e.preventDefault();
+            if (refreshSubmitted) {
+                return;
+            }
+            refreshSubmitted = true;
+            $("#refresh-node-error").hide();
+            $("#refresh-node-label").hide();
+            $("#refresh-button").addClass("submitted");
+            $("#refresh-node-loader").show();
+            var module = {
+                _csrf: $("#refresh-csrf").val(),
+                module: "node-red-dashboard"
+            };
+            $.post("/add/node",module,function(data) {
+                window.location = data;
+            }).fail(function(err) {
+                if (err.status == 403) {
+                    window.location.reload();
+                }
+                refreshSubmitted = false;
+                console.log("ERROR",err);
+                $("#refresh-button").removeClass("submitted");
+                $("#refresh-node-loader").hide();
+                $("#refresh-node-label").show();
+                $("#refresh-node-error").text(err.responseText).show();
+            });
+        });
+
+    });
+
+</script>
+
+</div><div id="cc--main" style="position: fixed; z-index: 1000000;" class="c--anim"><!--[if lt IE 9 ]><div id="cc_div" class="cc_div ie"></div><![endif]--><!--[if (gt IE 8)|!(IE)]><!--><div id="cc_div" class="cc_div"><div id="cm" role="dialog" aria-modal="true" aria-hidden="false" aria-labelledby="c-ttl" aria-describedby="c-txt" style="visibility: hidden;"><div id="c-inr"><div id="c-inr-i"><div id="c-ttl" role="heading" aria-level="2">This site uses cookies</div><div id="c-txt">We use cookies to ensure this site's proper operation and, if you approve, functionality cookies for certain interactive features of this site. If you wish to opt-out from the use of cookies please see our <a aria-label="Cookie policy" class="cc-link" href="https://www.linuxfoundation.org/cookies">Cookies Policy.</a>.</div></div><div id="c-bns"><button type="button" id="c-p-bn" class="c-bn">Accept</button><button type="button" id="c-s-bn" class="c-bn c_link">Settings...</button></div></div></div><div id="cm-ov" style="visibility: hidden; opacity: 0;"></div><div id="s-cnt" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="s-ttl" style="visibility: hidden;"><div id="c-vln"><div id="cs"><div id="c-s-in"><div id="s-inr" class="bns-t"><div id="s-hdr"><div id="s-ttl" role="heading">Cookie options</div><div id="s-c-bnc"><button type="button" id="s-c-bn" class="c-bn" aria-label="Close"></button></div></div><div id="s-bl"><div class="c-bl"><div class="title"><div class="b-tl" role="heading" aria-level="3">Cookie usage</div></div><div class="desc"><div class="p">We use cookies to ensure the basic functionality of the website and to enhance your online experience. You can opt-in/out of receiving non-essential cookies.</div></div></div><div class="c-bl b-ex"><div class="title b-bn"><button type="button" class="b-tl" aria-expanded="false" aria-controls="c-ac-1">Strictly necessary cookies</button><label class="b-tg"><input class="c-tgl" type="checkbox" value="necessary" disabled=""><span class="c-tg c-ro" aria-hidden="true"><span class="on-i"></span><span class="off-i"></span></span><span class="t-lb">Strictly necessary cookies</span></label></div><div class="desc b-acc" id="c-ac-1" aria-hidden="true"><div class="p">These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.</div></div></div><div class="c-bl b-ex"><div class="title b-bn"><button type="button" class="b-tl" aria-expanded="false" aria-controls="c-ac-2">Functionality cookies</button><label class="b-tg"><input class="c-tgl" type="checkbox" value="functionality"><span class="c-tg" aria-hidden="true"><span class="on-i"></span><span class="off-i"></span></span><span class="t-lb">Functionality cookies</span></label></div><div class="desc b-acc" id="c-ac-2" aria-hidden="true"><div class="p">These cookies are used for interactive functionality such as rating, Without these cookies certain  features may not be available.</div></div></div></div><div id="s-bns"><button type="button" id="s-all-bn" class="c-bn">Accept all</button><button type="button" id="s-rall-bn" class="c-bn">Reject all</button><button type="button" id="s-sv-bn" class="c-bn">Save settings</button></div></div></div></div></div></div><div id="cs-ov" style="visibility: hidden; opacity: 0;"></div></div><!--<![endif]--></div>
+<div class="links">
+    <div class="grid">
+        <div class="col-1-4">
+            <p><a href="https://nodered.org/">Node-RED</a>: Low-code programming for event-driven applications.</p>
+        </div>
+        <div class="col-1-4">
+            <ul>
+                <li><a href="https://github.com/node-red">GitHub</a></li>
+                <li><a href="https://www.npmjs.com/package/node-red">npm</a></li>
+                <li><a href="https://nodered.org/docs">Documentation</a></li>
+                <li><a href="https://nodered.org/docs/api">APIs</a></li>
+            </ul>
+        </div>
+        <div class="col-1-4">
+            <ul>
+                <li><a href="https://flows.nodered.org/">Flow Library</a></li>
+                <li><a href="https://nodered.org/about/">About</a></li>
+                <li><a href="https://nodered.org/about/conduct">Code of Conduct</a></li>
+                <li><a href="https://nodered.org/about/community">Community</a></li>
+            </ul>
+        </div>
+        <div class="col-1-4">
+            <ul>
+                <li><a href="https://nodered.org/blog">Blog</a></li>
+                <li><a href="https://twitter.com/nodered">Twitter</a></li>
+                <li><a href="https://discourse.nodered.org/">Forum</a></li>
+                <li><a href="https://nodered.org/slack">Slack</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="grid openjs">
+        <div class="col-1-4">
+            <a href="https://openjsf.org/"><img class="openjs-logo" src="./node-red-dashboard (node) - Node-RED_files/openjs_foundation-logo.svg"></a>
+        </div>
+        <div class="col-3-4">
+            <p>Copyright <a href="https://openjsf.org/">OpenJS Foundation</a> and Node-RED contributors. All rights reserved. The <a href="https://openjsf.org/">OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a href="https://openjsf.org/">OpenJS Foundation</a>, please see our <a href="https://trademark-policy.openjsf.org/">Trademark Policy</a> and <a href="https://trademark-list.openjsf.org/">Trademark List</a>.  Trademarks and logos not indicated on the <a href="https://trademark-list.openjsf.org/">list of OpenJS Foundation trademarks</a> are trademarks™ or registered® trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+            <p><a href="https://openjsf.org/">The OpenJS Foundation</a> | <a href="https://terms-of-use.openjsf.org/">Terms of Use</a> | <a href="https://privacy-policy.openjsf.org/">Privacy Policy</a> | <a href="https://bylaws.openjsf.org/">OpenJS Foundation Bylaws</a> | <a href="https://trademark-policy.openjsf.org/">Trademark Policy</a> | <a href="https://trademark-list.openjsf.org/">Trademark List</a> | <a href="https://www.linuxfoundation.org/cookies">Cookie Policy</a> | <a href="javascript:void(0);" aria-label="View cookie settings" data-cc="c-settings" aria-haspopup="dialog">Cookie Settings</a></p>
+        </div>
+    </div>
+</div>
+<script>
+  $(function() {
+    $(".menu").click(function(e) {
+        var s = $(".navigation").slideToggle('hide');
+        e.preventDefault();
+    });
+  });
+</script>
+
+
+<div id="veed-recorder-root"><template shadowrootmode="open"><section><div><div class="App" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;"><iframe title="veed-extension-permissions" allow="camera *; microphone *;" src="chrome-extension://mgipbckfkdcalgbcjmkogjijddnkbecc/iframe.html" style="display: none;"></iframe></div></div></section><link rel="stylesheet" href="chrome-extension://mgipbckfkdcalgbcjmkogjijddnkbecc/content-root.css"></template></div><div id="hl-aria-live-message-container" aria-live="polite" class="visually-hidden"></div><div id="hl-aria-live-alert-container" role="alert" aria-live="assertive" class="visually-hidden"></div></body></html>
